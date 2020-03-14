@@ -1,33 +1,31 @@
 #include <iostream>
 using namespace std;
 
-class Flour{
-	public:
-		static int canPack(int bigCount, int smallCount, int goal){
-			bool checker;
-			int newBigCount = bigCount * 5;
-			int total = newBigCount + smallCount;
-			if(bigCount < 0 || smallCount < 0){
-				checker = false;
-			} else if (total >= goal){
-				if(goal < newBigCount && smallCount == 0){
-          checker = false;
-        } else{
-          checker = true;
-        }
-			} else if (total < goal){
-				checker = false;
-			}
-			return checker;
-		}
-};
 int main(){
-	Flour fl;
-	cout << fl.canPack(1, 0, 4) << endl;		
-	cout << fl.canPack(1, 0, 5) << endl;
-	cout << fl.canPack(2, 2, 11) << endl;
-	cout << fl.canPack(-3, 2, 12) << endl;
-	cout << endl;
-	return 0;
-}
 
+  int num, factors[100], counter = 1, counter2 = 1;
+
+  cout << "Enter a number to factor: ";
+  cin >> num;
+
+  cout << "Factors are: \n";
+  for(int i = 1; i <= num; i++){
+    if(num % i == 0){
+      counter++;
+      cout << i << endl;
+      factors[counter] = i;
+    }
+  }
+
+  counter2 = counter;
+  cout << "In summary: \n";
+  for(int i = 2; i <= counter; i++){
+    cout << factors[i] << " * " << factors[counter2] << " = " << num << endl;
+    counter2--;
+    if(factors[i] == factors[counter2]){
+      break;
+    }
+  }
+
+  return 0;
+}
